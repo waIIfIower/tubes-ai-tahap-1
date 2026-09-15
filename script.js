@@ -199,13 +199,13 @@ function drawDebug() {
 
   for (const cellKey of animRevealedKeys) {
     const [x, y] = cellKey.split(",").map(Number);
-    ctx.fillStyle = "rgba(255, 5, 5, 0.68)";
+    ctx.fillStyle = "rgba(24, 132, 252, 0.68)";
     ctx.fillRect(x * CELL + 5, y * CELL + 5, CELL - 10, CELL - 10);
   }
 
   const lastContour = animContours[animStepIndex - 1];
   if (lastContour) {
-    ctx.strokeStyle = "rgba(37, 99, 235, 0.9)";
+    ctx.strokeStyle = "rgba(235, 37, 37, 0.9)";
     ctx.lineWidth = 2;
     for (const node of lastContour.nodes) {
       ctx.strokeRect(node.x * CELL + 3, node.y * CELL + 3, CELL - 6, CELL - 6);
@@ -213,11 +213,11 @@ function drawDebug() {
   }
 
   for (const cell of currentResult.frontierNodes) {
-    ctx.fillStyle = "rgba(30, 98, 244, 0.79)";
+    ctx.fillStyle = "rgba(41, 30, 244, 0.79)";
     ctx.fillRect(cell.x * CELL + 9, cell.y * CELL + 9, CELL - 18, CELL - 18);
   }
   for (const cell of currentResult.path) {
-    ctx.fillStyle = "rgba(255, 251, 0, 0.83)";
+    ctx.fillStyle = "rgba(255, 238, 0, 1)";
     ctx.fillRect(cell.x * CELL + 12, cell.y * CELL + 12, CELL - 24, CELL - 24);
   }
 }
@@ -291,17 +291,17 @@ function updateStats(result) {
   const averageTime = totalSearches > 0 ? (totalSearchTime / totalSearches).toFixed(3) : "0";
   statsContent.innerHTML = `
     <table>
-      <tr><td>Algorithm</td><td>${getAlgorithmName()}</td></tr>
-      <tr><td>Heuristic</td><td>${getHeuristicName()}</td></tr>
-      <tr><td>Current goal</td><td>(${playerCell.x}, ${playerCell.y})</td></tr>
-      <tr><td>Current expanded</td><td>${result.expandedNodes}</td></tr>
-      <tr><td>Current path cost</td><td>${result.pathCost ?? "No path"}</td></tr>
-      <tr><td>Current path length</td><td>${result.pathLength}</td></tr>
-      <tr><td>Current search time</td><td>${result.searchTimeMs.toFixed(3)} ms</td></tr>
-      <tr><td>Total searches</td><td>${totalSearches}</td></tr>
+      <tr><td>Algoritma</td><td>${getAlgorithmName()}</td></tr>
+      <tr><td>Heuristik</td><td>${getHeuristicName()}</td></tr>
+      <tr><td>Tujuan Saat Ini</td><td>(${playerCell.x}, ${playerCell.y})</td></tr>
+      <tr><td>Expanded Saat Ini</td><td>${result.expandedNodes}</td></tr>
+      <tr><td>Path cost Saat Ini</td><td>${result.pathCost ?? "No path"}</td></tr>
+      <tr><td>Path length Saat Ini</td><td>${result.pathLength}</td></tr>
+      <tr><td>Waktu pencarian Saat Ini</td><td>${result.searchTimeMs.toFixed(3)} ms</td></tr>
+      <tr><td>Total pencarian</td><td>${totalSearches}</td></tr>
       <tr><td>Total expanded</td><td>${totalExpanded}</td></tr>
-      <tr><td>Average expanded</td><td>${averageExpanded}</td></tr>
-      <tr><td>Average time</td><td>${averageTime} ms</td></tr>
+      <tr><td>Rata-rata expanded</td><td>${averageExpanded}</td></tr>
+      <tr><td>Rata-rata waktu</td><td>${averageTime} ms</td></tr>
     </table>
   `;
 }
@@ -315,10 +315,10 @@ function updateHistory() {
   historyContent.innerHTML = `
     <div class="history-box">
       <table>
-        <tr><th>No</th><th>Aksi</th><th>Goal</th><th>Expanded</th><th>Cost</th></tr>
+        <tr><th>No</th><th>Aksi</th><th>Tujuan</th><th>Expanded</th><th>Cost</th></tr>
         ${recent.map(item => {
-          const icon = item.source === "player" ? "Player" : "NPC";
-          return `
+    const icon = item.source === "player" ? "Player" : "NPC";
+    return `
             <tr>
               <td>${item.number}</td>
               <td>${icon}</td>
@@ -327,7 +327,7 @@ function updateHistory() {
               <td>${item.cost}</td>
             </tr>
           `;
-        }).join("")}
+  }).join("")}
       </table>
     </div>
   `;
@@ -421,9 +421,9 @@ function compareAlgorithms() {
   });
 
   compareResult.innerHTML = `
-    <h3>Comparison at current positions</h3>
+    <h3>Perbandingan pada Posisi Saat Ini</h3>
     <table>
-      <tr><th>Algorithm</th><th>Expanded</th><th>Cost</th><th>Length</th></tr>
+      <tr><th>Algoritma</th><th>Expanded</th><th>Cost</th><th>Panjang</th></tr>
       ${results.map(item => `
         <tr>
           <td>${item.name}</td>

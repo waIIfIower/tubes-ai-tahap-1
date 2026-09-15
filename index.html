@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NPC Pathfinding: UCS vs A*</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="page">
     <h1>orang cimahi baik dikejar begal lampung</h1>
+
+    <!-- Baris Kontrol di Atas Map -->
+    <div class="controls-card">
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="algorithm">Algoritma</label>
+          <select id="algorithm">
+            <option value="ucs">Uniform Cost Search (UCS)</option>
+            <option value="astar">A* Search</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="heuristic">Heuristik (khusus A*)</label>
+          <select id="heuristic">
+            <option value="manhattan">Manhattan</option>
+            <option value="euclidean">Euclidean</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button id="randomBtn" class="secondary">Acak Map Baru</button>
+        <button id="resetBtn" class="secondary">Reset</button>
+      </div>
+    </div>
 
     <div class="layout">
       <!-- Sisi Kiri: Map + Kontrol Game -->
@@ -17,31 +45,7 @@
           <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
 
-        <!-- Baris Kontrol di Bawah Map -->
-        <div class="controls-card">
-          <div class="controls-row">
-            <div class="control-group">
-              <label for="algorithm">Algoritma</label>
-              <select id="algorithm">
-                <option value="ucs">Uniform Cost Search (UCS)</option>
-                <option value="astar">A* Search</option>
-              </select>
-            </div>
 
-            <div class="control-group">
-              <label for="heuristic">Heuristik (khusus A*)</label>
-              <select id="heuristic">
-                <option value="manhattan">Manhattan</option>
-                <option value="euclidean">Euclidean</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button id="randomBtn" class="secondary">Acak Map Baru</button>
-            <button id="resetBtn" class="secondary">Reset</button>
-          </div>
-        </div>
       </div>
 
       <!-- Sisi Kanan: Panel Informasi & Statistik -->
